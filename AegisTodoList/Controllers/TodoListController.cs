@@ -15,9 +15,9 @@ namespace AegisTodoList.Controllers
     {
         private ITodoListManager _todoListManager;
 
-        public TodoListController()
+        public TodoListController(ITodoListManager todoListManager)
         {
-            _todoListManager = new TodoListManager();
+            _todoListManager = todoListManager;
         }
 
         [HttpGet]
