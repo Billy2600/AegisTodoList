@@ -41,8 +41,6 @@ export class TodoListItemComponent {
     };
     this.listItem = listItem;
 
-    console.log(this.listItem.todoListItemId);
-
     this.http.put<TodoListItemModel>(this.baseUrl + 'TodoList/' + this.listItem.todoListItemId, listItem).subscribe();
 
     this.toggleEditing();

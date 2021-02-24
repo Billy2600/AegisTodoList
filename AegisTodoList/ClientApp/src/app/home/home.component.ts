@@ -30,8 +30,6 @@ export class HomeComponent {
     this.http.get<TodoListItemModel[]>(this.baseUrl + this.controllerPath).subscribe(result => {
       this.todoListItems = result;
     }, error => console.error(error));
-
-    console.log(this.todoListItems);
   }
 
   addListItem(): void {
@@ -39,7 +37,7 @@ export class HomeComponent {
       todoListItemId: 0,
       name: this.newListItemForm.get('name').value,
       description: this.newListItemForm.get('description').value,
-      completed: this.newListItemForm.get('completed').value
+      completed: false
     };
 
     this.http.post<TodoListItemModel>(this.baseUrl + this.controllerPath, listItem).subscribe(result =>

@@ -1,12 +1,10 @@
-<div class="todo-list-item" *ngIf="!editing">
+<div class="todo-list-item" *ngIf="!editing" [ngClass]="{'completed-item' : listItem.completed}">
     <h3>{{listItem.name}}</h3>
     {{listItem.description}}
-    <a href="#">
-        <span *ngIf="listItem.completed; else blankBox">Completed</span>
-        <ng-template #blankBox>Not Completed</ng-template>
-    </a>
-    <a href="#" (click)="toggleEditing()">Edit</a>
-    <a href="#">Delete</a>
+
+    <div>
+        <button (click)="toggleEditing()">Edit</button>
+    </div>
 </div>
 <div class="todo-list-item" *ngIf="editing">
     <form [formGroup]="editListItemForm" (ngSubmit)="editListItem()">
