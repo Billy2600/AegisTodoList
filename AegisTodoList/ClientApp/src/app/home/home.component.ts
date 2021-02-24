@@ -1,18 +1,19 @@
 import { Component, Inject, NgModule } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { TodoListItem } from './todoListItem';
-import { interval } from 'rxjs';
+import { TodoListItemModel } from '../models/todoListItemModel';
+import { TodoListItemComponent } from '../todo-list-item/todo-list-item.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
-  public todoListItems: TodoListItem[];
+  public todoListItems: TodoListItemModel[];
   private readonly controllerPath = 'TodoList';
 
   newListItemForm = this.formBuilder.group({
+    name: '',
     description: '',
     completed: false
   })
@@ -26,19 +27,20 @@ export class HomeComponent {
   }
 
   loadListItems(): void {
-    this.http.get<TodoListItem[]>(this.baseUrl + this.controllerPath).subscribe(result => {
+    this.http.get<TodoListItemModel[]>(this.baseUrl + this.controllerPath).subscribe(result => {
       this.todoListItems = result;
     }, error => console.error(error));
   }
 
   addListItem(): void {
-    let listItem : TodoListItem = {
+    let listItem : TodoListItemModel = {
       todoListItemID: 0,
+      name: this.newListItemForm.get('name').value,
       description: this.newListItemForm.get('description').value,
       completed: this.newListItemForm.get('completed').value
     };
 
-    this.http.post<TodoListItem>(this.baseUrl + this.controllerPath, listItem).subscribe(result =>
+    this.http.post<TodoListItemModel>(this.baseUrl + this.controllerPath, listItem).subscribe(result =>
       this.loadListItems()
     );
   }

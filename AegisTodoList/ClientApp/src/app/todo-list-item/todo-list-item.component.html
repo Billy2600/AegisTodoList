@@ -1,0 +1,10 @@
+<div class="todo-list-item">
+    <h3>{{listItem.name}}</h3>
+    {{listItem.description}}
+    <a href="#">
+        <span *ngIf="listItem.completed; else blankBox">Completed</span>
+        <ng-template #blankBox>Not Completed</ng-template>
+    </a>
+    <a href="#">Edit</a>
+    <a href="#">Delete</a>
+</div>

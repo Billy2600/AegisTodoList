@@ -2,28 +2,21 @@
 
 <p *ngIf="!todoListItems"><em>Loading...</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="todoListItems">
-  <thead>
-    <tr>
-      <th>Description<th>
-      <th>Completed</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let todoListItem of todoListItems">
-      <td>{{ todoListItem.description }}</td>
-      <td>{{ todoListItem.completed }}</td>
-    </tr>
-  </tbody>
-</table>
+<div *ngFor="let todoListItem of todoListItems">
+  <app-todo-list-item [listItem]="todoListItem"></app-todo-list-item>
+</div>
 
 <form [formGroup]="newListItemForm" (ngSubmit)="addListItem()">
   <div>
-    <label for="description">Description</label>
+    <label for="name">Name</label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+  <div>
+    <label for="description">Description</label> &nbsp;
     <input id="description" type="text" formControlName="description">
   </div>
   <div>
-    <label for="completed">Completed</label>
+    <label for="completed">Completed</label> &nbsp;
     <input id="completed" type="checkbox" formControlName="completed">
   </div>
 

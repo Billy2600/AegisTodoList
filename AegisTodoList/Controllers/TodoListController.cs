@@ -21,13 +21,13 @@ namespace AegisTodoList.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<TodoListItem> Get()
+        public IEnumerable<TodoListItemModel> Get()
         {
             return _todoListManager.GetListItems();
         }
 
         [HttpPost]
-        public void Add(TodoListItem listItem)
+        public void Add(TodoListItemModel listItem)
         {
             _todoListManager.AddListItem(listItem);
         }
@@ -39,7 +39,7 @@ namespace AegisTodoList.Controllers
         }
 
         [HttpPut("{id}")]
-        public void Update(int id, TodoListItem listItem)
+        public void Update(int id, TodoListItemModel listItem)
         {
             listItem.TodoListItemId = id; // Parameter ID takes precedence over the one in the object
             _todoListManager.UpdateListItem(listItem);

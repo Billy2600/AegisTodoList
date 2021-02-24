@@ -10,38 +10,38 @@ namespace AegisTodoList.Managers
     public class TodoListManager : ITodoListManager
     {
         // Temporary psuedo database stuff
-        private static List<TodoListItem> _todoListItems;
+        private static List<TodoListItemModel> _TodoListItemModels;
         private static int lastId;
 
         public TodoListManager()
         {
-            if(_todoListItems == null) _todoListItems = new List<TodoListItem>();
+            if(_TodoListItemModels == null) _TodoListItemModels = new List<TodoListItemModel>();
         }
 
-        public IEnumerable<TodoListItem> GetListItems()
+        public IEnumerable<TodoListItemModel> GetListItems()
         {
-            return _todoListItems;
+            return _TodoListItemModels;
         }
 
-        public void AddListItem(TodoListItem listItem)
+        public void AddListItem(TodoListItemModel listItem)
         {
             listItem.TodoListItemId = ++lastId;
-            _todoListItems.Add(listItem);
+            _TodoListItemModels.Add(listItem);
         }
 
         public void DeleteListItem(int listItemID)
         {
-            _todoListItems.RemoveAll(x => x.TodoListItemId == listItemID);
+            _TodoListItemModels.RemoveAll(x => x.TodoListItemId == listItemID);
         }
 
-        public void UpdateListItem(TodoListItem updatedListItem)
+        public void UpdateListItem(TodoListItemModel updatedListItem)
         {
-            var oldListItem = _todoListItems.Where(x => x.TodoListItemId == updatedListItem.TodoListItemId).FirstOrDefault();
-            var index = _todoListItems.IndexOf(oldListItem);
+            var oldListItem = _TodoListItemModels.Where(x => x.TodoListItemId == updatedListItem.TodoListItemId).FirstOrDefault();
+            var index = _TodoListItemModels.IndexOf(oldListItem);
 
             if(oldListItem != null && index != -1)
             {
-                _todoListItems[index] = updatedListItem; 
+                _TodoListItemModels[index] = updatedListItem; 
             }
         }
     }
