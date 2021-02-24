@@ -55,3 +55,4 @@ packages/**
 *.resharper
 *.ncrunch*
 *.ndproj
+/AegisTodoList/todo.db

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Data.Sqlite;
 
 namespace AegisTodoList
 {
@@ -74,6 +75,20 @@ namespace AegisTodoList
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+            using (var connection = new SqliteConnection(Configuration.GetConnectionString("TodoDatabase")))
+            {
+                connection.Open();
+                var command = connection.CreateCommand();
+                command.CommandText = @"CREATE TABLE IF NOT EXISTS todo_list (
+                    todo_list_item_id INTEGER PRIMARY KEY,
+                    name VARCHAR(255) NOT NULL,
+                    description VARCHAR(1000) NULL,
+                    completed INTEGER NULL
+                    );";
+
+                command.ExecuteNonQuery();
+            }
         }
     }
 }
