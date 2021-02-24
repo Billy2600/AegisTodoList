@@ -15,7 +15,7 @@ namespace AegisTodoList.Managers
 
         public TodoListManager(IConfiguration config)
         {
-            _connectionString = config.GetConnectionString("TodoDatabase");
+            _connectionString = config.GetSection("ConnectionStrings")["TodoDatabase"];
         }
 
         public IEnumerable<TodoListItemModel> GetListItems()
@@ -48,6 +48,9 @@ namespace AegisTodoList.Managers
 
         public void AddListItem(TodoListItemModel listItem)
         {
+            if (listItem == null)
+                return;
+
             using (var connection = new SqliteConnection(_connectionString))
             {
                 connection.Open();
