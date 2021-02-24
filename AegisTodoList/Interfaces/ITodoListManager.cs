@@ -8,6 +8,9 @@ namespace AegisTodoList.Interfaces
 {
     public interface ITodoListManager
     {
-        IEnumerable<TodoListItem> GetTodoListItems();
+        IEnumerable<TodoListItem> GetListItems();
+        void AddListItem(TodoListItem listItem);
+        void DeleteListItem(int listItemID);
+        void UpdateListItem(TodoListItem updatedListItem);
     }
 }

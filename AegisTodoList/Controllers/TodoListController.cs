@@ -23,7 +23,26 @@ namespace AegisTodoList.Controllers
         [HttpGet]
         public IEnumerable<TodoListItem> Get()
         {
-            return _todoListManager.GetTodoListItems();
+            return _todoListManager.GetListItems();
+        }
+
+        [HttpPost]
+        public void Add(TodoListItem listItem)
+        {
+            _todoListManager.AddListItem(listItem);
+        }
+
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            _todoListManager.DeleteListItem(id);
+        }
+
+        [HttpPut("{id}")]
+        public void Update(int id, TodoListItem listItem)
+        {
+            listItem.TodoListItemId = id; // Parameter ID takes precedence over the one in the object
+            _todoListManager.UpdateListItem(listItem);
         }
     }
 }
