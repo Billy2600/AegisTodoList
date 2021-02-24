@@ -30,11 +30,13 @@ export class HomeComponent {
     this.http.get<TodoListItemModel[]>(this.baseUrl + this.controllerPath).subscribe(result => {
       this.todoListItems = result;
     }, error => console.error(error));
+
+    console.log(this.todoListItems);
   }
 
   addListItem(): void {
     let listItem : TodoListItemModel = {
-      todoListItemID: 0,
+      todoListItemId: 0,
       name: this.newListItemForm.get('name').value,
       description: this.newListItemForm.get('description').value,
       completed: this.newListItemForm.get('completed').value

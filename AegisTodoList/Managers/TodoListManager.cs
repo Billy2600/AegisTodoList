@@ -23,10 +23,12 @@ namespace AegisTodoList.Managers
             return _TodoListItemModels;
         }
 
-        public void AddListItem(TodoListItemModel listItem)
+        public TodoListItemModel AddListItem(TodoListItemModel listItem)
         {
             listItem.TodoListItemId = ++lastId;
             _TodoListItemModels.Add(listItem);
+
+            return listItem;
         }
 
         public void DeleteListItem(int listItemID)

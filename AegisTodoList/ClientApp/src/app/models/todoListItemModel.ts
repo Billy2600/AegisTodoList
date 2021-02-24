@@ -1,5 +1,5 @@
 export interface TodoListItemModel {
-    todoListItemID: number;
+    todoListItemId: number;
     name: string;
     description: string;
     completed: boolean;

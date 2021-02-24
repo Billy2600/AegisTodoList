@@ -27,9 +27,9 @@ namespace AegisTodoList.Controllers
         }
 
         [HttpPost]
-        public void Add(TodoListItemModel listItem)
+        public TodoListItemModel Add(TodoListItemModel listItem)
         {
-            _todoListManager.AddListItem(listItem);
+            return _todoListManager.AddListItem(listItem);
         }
 
         [HttpDelete("{id}")]
