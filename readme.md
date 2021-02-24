@@ -20,4 +20,4 @@ Bonus points for using any of the following:
 Persistence layer can be as simple as you’d like (static variables / session / whatever).  Make sure your code shows your knowledge of C#, HTML, CSS, TypeScript/JavaScript, and SOLID principals
 ```
 
-Everything is self-contained inside a Visual Studio solution, so if you have Node.js installed, you should be able to just run it from Visual Studio.
+Everything is self-contained inside a Visual Studio solution, so if you have Node.js installed, you should be able to just run it from Visual Studio. Angular specific code can be found in `AegisTodoList/AegisTodoList/ClientApp/`, as this is where VS puts it by default in its project template.
