@@ -8,7 +8,15 @@ import { TodoListItemModel } from '../models/todoListItemModel';
 })
 export class TodoListItemComponent {
   @Input() listItem: TodoListItemModel;
+  public editing: boolean; // Are we currently editing this list item?
 
-  constructor() { }
+  constructor() {
+    this.editing = false;
+  }
+
+  public toggleEditing(): void {
+    console.log("toggleEditing()");
+    this.editing = !this.editing;
+  }
 
 }
